@@ -31,9 +31,17 @@ def call(Map parameters = [:]) {
     // Send message and get handle on SendResult
     def sendResult = null
     if (msgProvider) {
-        sendResult = utils.sendMessage(msgTopic, msgProps, msgContent, msgProvider)
+        try {
+            sendResult = utils.sendMessage(msgTopic, msgProps, msgContent, msgProvider)
+        } catch (e) {
+            println "Failed to send mail: " + e 
+        }
     } else {
-        sendResult = utils.sendMessage(msgTopic, msgProps, msgContent)
+        try {
+            sendResult = utils.sendMessage(msgTopic, msgProps, msgContent)
+        } catch (e) {
+            println "Failed to send mail: " + e
+        }
     }
 
     String id = sendResult.getMessageId()

@@ -285,11 +285,12 @@ def sendMessage(String msgTopic, String msgProps, String msgContent, def provide
                             messageProperties: msgProps,
                             messageType: 'Custom',
                             overrides: [topic: msgTopic],
-                            failOnError: true,
+                            failOnError: false,
                             providerName: msg_provider
                     return sendResult
                 } catch(e) {
-                    throw e
+                    println "Problem sending mail" + e
+                    //throw e
                 }
             }
         } catch(e) {
