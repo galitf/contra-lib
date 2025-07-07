@@ -375,7 +375,7 @@ def mapMergeQuotes(def sources) {
     if (sources.size() == 0) return [:]
     if (sources.size() == 1) return sources[0]
 
-    def v2
+    String v2 = ""
     sources.inject([:]) { result, source ->
         source.each { k, v ->
             if (v instanceof String && (v == "" || !(v[0] in ["\"", "{"]))) {
@@ -437,7 +437,7 @@ def getMapStringColon(Map myMap) {
  * @return String
  */
 def getMapString(Map myMap) {
-   def myString = ""
+   String myString = ""
    myMap.each { k, v ->
        myString = myString + k + "=" + v + "\n"
    }
